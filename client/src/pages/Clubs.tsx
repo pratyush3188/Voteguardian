@@ -81,7 +81,13 @@ export default function Clubs() {
     }
   }, []);
 
-  const initiativesList = clubs.filter(c => c.type === 'Initiative');
+  const initiativesList = clubs.filter(c => c.type === 'Initiative').sort((a, b) => {
+    const isAStudentCouncil = (a.name || '').toLowerCase().includes('student council');
+    const isBStudentCouncil = (b.name || '').toLowerCase().includes('student council');
+    if (isAStudentCouncil && !isBStudentCouncil) return -1;
+    if (!isAStudentCouncil && isBStudentCouncil) return 1;
+    return 0;
+  });
   const centresList = clubs.filter(c => c.type === 'Centre' || c.type === 'Center');
   const clubsList = clubs.filter(c => c.type !== 'Initiative' && c.type !== 'Centre' && c.type !== 'Center');
 
