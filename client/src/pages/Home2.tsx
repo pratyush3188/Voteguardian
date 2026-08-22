@@ -158,6 +158,12 @@ const Home2 = () => {
     const typeB = (b.type || '').toLowerCase();
     const nameA = (a.name || '').toLowerCase();
     const nameB = (b.name || '').toLowerCase();
+
+    const isAStudentCouncil = nameA.includes('student council');
+    const isBStudentCouncil = nameB.includes('student council');
+    if (isAStudentCouncil && !isBStudentCouncil) return -1;
+    if (!isAStudentCouncil && isBStudentCouncil) return 1;
+
     const isAInit = typeA === 'initiative' || typeA === 'center' || typeA === 'centre' || initiativeKeywords.some(k => nameA.includes(k));
     const isBInit = typeB === 'initiative' || typeB === 'center' || typeB === 'centre' || initiativeKeywords.some(k => nameB.includes(k));
     if (isAInit && !isBInit) return -1;
@@ -244,7 +250,7 @@ const Home2 = () => {
       `}</style>
 
       {/* Hero Section */}
-      <section style={{ paddingTop: isMobile ? '4.5rem' : '6rem', paddingBottom: '3rem', textAlign: 'center', overflow: 'hidden', background: '#FFFFFF' }}>
+      <section style={{ paddingTop: isMobile ? '7.5rem' : '6.5rem', paddingBottom: '3rem', textAlign: 'center', overflow: 'hidden', background: '#FFFFFF' }}>
         <h1 ref={heroRef} className="premium-hero-heading">
           <span className="hero-line">
             Where JECRC <span style={{ position: 'relative', display: 'inline-block', fontStyle: 'italic', zIndex: 1, marginLeft: '0.1em' }}>
@@ -298,8 +304,8 @@ const Home2 = () => {
 
             if (isMobile) {
               if (isTwoCardsLayout) {
-                if (isAdjLeft) { zIndex = 15; left = 'calc(50% - 70px)'; height = '360px'; width = '255px'; }
-                else if (isAdjRight) { zIndex = 10; left = 'calc(50% + 70px)'; height = '360px'; width = '255px'; }
+                if (isAdjLeft) { zIndex = 10; left = 'calc(50% - 135px)'; height = '360px'; width = '255px'; }
+                else if (isAdjRight) { zIndex = 10; left = 'calc(50% + 135px)'; height = '360px'; width = '255px'; }
                 else if (isHidden) { zIndex = 1; left = '50%'; height = '220px'; width = '156px'; opacity = 0; }
               } else {
                 if (isCenter) {
